@@ -34,12 +34,9 @@ dash.register_page(__name__, path_template="/report")
 
 def layout(username=None, portfolio_name=None, api_key=None, **kwargs):
 
-    print(username)
-    print(portfolio_name)
-    print(api_key)
     
     sim_run = sim_port.check_sim(username, portfolio_name, api_key)
-    print(sim_run)
+    
     
     sim_results = sim_run["results"]
     yearly_avgs = sim_results["yearly_avgs"]

@@ -189,22 +189,22 @@ def sim_portfolio(args):
     principal = args["principal"]
     reinvest = args["reinvest"]
 
-    print(f"user stocks: {user_stocks} of type {type(user_stocks)}")
-    print(f"user bonds: {user_bonds} of type {type(user_bonds)}")
-    print(f"user cash: {user_cash} of type {type(user_cash)}")
-    print(f"stock ret: {stock_ret} of type {type(stock_ret)}")
-    print(f"stock std: {stock_std} of type {type(stock_std)}")
-    print(f"stock div: {stock_div} of type {type(stock_div)}")
-    print(f"bond ret: {bond_ret} of type {type(bond_ret)}")
-    print(f"bond std: {bond_std} of type {type(bond_std)}")
-    print(f"bond div: {bond_div} of type {type(bond_div)}")
+    # print(f"user stocks: {user_stocks} of type {type(user_stocks)}")
+    # print(f"user bonds: {user_bonds} of type {type(user_bonds)}")
+    # print(f"user cash: {user_cash} of type {type(user_cash)}")
+    # print(f"stock ret: {stock_ret} of type {type(stock_ret)}")
+    # print(f"stock std: {stock_std} of type {type(stock_std)}")
+    # print(f"stock div: {stock_div} of type {type(stock_div)}")
+    # print(f"bond ret: {bond_ret} of type {type(bond_ret)}")
+    # print(f"bond std: {bond_std} of type {type(bond_std)}")
+    # print(f"bond div: {bond_div} of type {type(bond_div)}")
 
-    print(f"inflation rate: {inflation_rate} of type {type(inflation_rate)}")
-    print(f"inflation std: {bond_std} of type {type(bond_std)}")
-    print(f"horizon: {horizon} of type {type(horizon)}")
-    print(f"num sims: {num_sims} of type {type(num_sims)}")
-    print(f"principal: {principal} of type {type(principal)}")
-    print(f"reinvest: {reinvest} of type {type(reinvest)}")
+    # print(f"inflation rate: {inflation_rate} of type {type(inflation_rate)}")
+    # print(f"inflation std: {bond_std} of type {type(bond_std)}")
+    # print(f"horizon: {horizon} of type {type(horizon)}")
+    # print(f"num sims: {num_sims} of type {type(num_sims)}")
+    # print(f"principal: {principal} of type {type(principal)}")
+    # print(f"reinvest: {reinvest} of type {type(reinvest)}")
 
 
 
