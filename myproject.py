@@ -19,6 +19,7 @@ import port
 import sim_port
 import mongo_creds
 from urllib.parse import quote_plus
+import logging
 import re
 
 username = f'{mongo_creds.username}'
@@ -40,6 +41,12 @@ hist_avgs = {"inflation": {"rate": .033, "std": .04},
              "bonds": {"yield": .05, "std": .07, "dividend": .04}}
 
 app = Flask(__name__)
+
+
+
+logger = logging.getLogger("werkzeug")
+handler = logging.FileHandler("/home/ubuntu/portfolio_app/error_log.log")
+logger.addHandler(handler)
 
 with app.app_context():
     g.cur_app = app
@@ -66,6 +73,27 @@ def verify_key(check_name):
     api_key = user_data["APIkey"]
     
     return api_key
+
+
+
+#@app.route("/favicon.ico")
+#def favicon():
+#    return send_from_directory(os.path.join(app.root_path, "static"), "favicon
+
+
+
+#@app.errorhandler(500)
+#def internal_error(exception):
+#    logger.error(exception, extra={"stack":True})
+#    return render_template("500.html", exception=exception), 500
+
+
+
+if __name__ != '__main__':
+    gunicorn_logger = logging.getLogger('gunicorn.error')
+    app.logger.handlers = gunicorn_logger.handlers
+    app.logger.setLevel(gunicorn_logger.level)
+
 
 @app.route("/")
 def home():
@@ -667,10 +695,13 @@ def sim_portfolio(portfolio_name):
         inflation_std = float(inflation_std) / 100
     if not horizon:
         horizon = user_data["horizon"]
-    if not num_sims:
-        num_sims = 1000
+   
     if not principal:
         principal = 1000
+    else:
+        principal = float(principal)
+    if not num_sims:
+        num_sims = 1000
     if reinvest_str == "True":
         reinvest = True
     else:
@@ -698,15 +729,15 @@ def sim_portfolio(portfolio_name):
 
     args["inflation_rate"] = inflation_rate
     args["inflation_std"] = inflation_std
-    args["user_horizon"] = horizon
+    args["user_horizon"] = int(horizon)
     args["sims"] = num_sims
     args["principal"] = principal
     args["reinvest"] = reinvest
-    
-    
+
+
     results = sim_port.sim_portfolio(args)
 
-        
+
     if results["success"] == 1:
         return redirect(f"/dashboard/report?username={username}&portfolio_name={portfolio_name}&api_key={api_key}")
     else:
@@ -738,11 +769,11 @@ def sim_results(portfolio_name):
         flash(sim_run["error_msg"], "error")
         return redirect(f"/sim/{portfolio_name}")
     else:
-        return redirect(f"/dashboard/report?username={username}&portfolio_name={portfolio_name}&key={api_key}")
+        return redirect(f"/dashboard/report?username={username}&portfolio_name={portfolio_name}&api_key={api_key}")
 
 
 if __name__ == "__main__":
-    app.run(port=8000, debug=True)
+    app.run(host='0.0.0.0')
 
 # def open_browser():
 #     webbrowser.open_new("http://127.00.1:5000")

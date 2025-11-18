@@ -208,6 +208,8 @@ def sim_portfolio(args):
 
 
 
+    print(horizon)
+    print(type(horizon))
 
     stock_val_nominal_list = [ [] for _ in range(horizon)]
     stock_val_real_list = [ [] for _ in range(horizon)]
@@ -216,7 +218,7 @@ def sim_portfolio(args):
     cash_val_nominal_list = [ [] for _ in range(horizon)]
     cash_val_real_list = [ [] for _ in range(horizon)]
     inflation_list = [ [] for _ in range(horizon)]
-    portfolio_nominal_list = [ [] for _ in range(horizon)] 
+    portfolio_nominal_list = [ [] for _ in range(horizon)]
     portfolio_real_list =  [ [] for _ in range(horizon)]
 
     for sim in range(num_sims):
