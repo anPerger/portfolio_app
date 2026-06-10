@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, request, flash, redirect, session, jsonify, render_template_string, g
+from flask import Flask, render_template, request, flash, redirect, session, jsonify, render_template_string, g, send_from_directory
 import dash
 from dash import Dash, html
 # import dash_html_components as html
@@ -76,10 +76,13 @@ def verify_key(check_name):
 
 
 
-#@app.route("/favicon.ico")
-#def favicon():
-#    return send_from_directory(os.path.join(app.root_path, "static"), "favicon
-
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(
+        os.path.join(app.root_path, 'static'),
+        'favicon.ico',
+        mimetype='image/vnd.microsoft.icon'
+    )
 
 
 #@app.errorhandler(500)
